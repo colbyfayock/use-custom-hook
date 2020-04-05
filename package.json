@@ -1,0 +1,33 @@
+{
+  "name": "use-custom-hook",
+  "version": "1.0.0",
+  "description": "A starter for creating a new React hook",
+  "author": "Colby Fayock <hello@colbyfayock.com>",
+  "keywords": [
+    "react",
+    "hooks",
+    "react-hooks"
+  ],
+  "main": "dist/use-custom-hook.js",
+  "scripts": {
+    "prepublishOnly": "yarn build",
+    "build": "babel src --out-dir .",
+    "bump": "npm version"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colbyfayock/use-custom-hook"
+  },
+  "bugs": {
+    "url": "https://github.com/colbyfayock/use-custom-hook/issues"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4"
+  }
+}
