@@ -28,34 +28,28 @@ See [Adding an existing project to GitHub using the command line](https://help.g
 * Update the `package.json` file to include your hook's name, description, and your author information
 
 ### Setting up your new hook
-* Find all instances of `useCustomHook` in the project folder and replace it with your new hook name
-* Find all instances of `use-custom-hook` in the project folder and replace it with your new hook name
-* Rename `src/useCustomHook.js` to your new hook's name and update the location in `src/index.js`
+* Move / rename files and folders:
+  * Rename `use-custom-hook/src/useCustomHook.js` to your new hook's name
+  * Update the location in `use-custom-hook/src/index.js` with the new file name
+  * Update the `use-custom-hook/package.json` name entry to your hook's new name in snake-case format
+  * Update the `use-custom-hook` folder to the same name as your as the name entry in `use-custom-hook/package.json`
+  * Update the `use-custom-hook` workspace entry in the root `paackage.json` to the name of your folder
+* Update hook name instances in files:
+  * Change any instances of `useCustomHook` to your new hook name in camelCase format
+  * Change any instances of `use-custom-hook` to your new hook name in snake-case format
 
 ### Updating the example
 * Update all examples in `example/pages/index.js` to use your new hook instead of `useCustomHook`
 * Update the How to Use section in `example/pages/index.js` with documentation on how to use your hook
-* Update the name and description in `example/pages/index.js` to your new hook's name and description
 
-### Testing your hook
-* Build the hook locally. From the root of the project, run:
-```
-yarn build
-```
-* Refresh the dependency in the example. In the `example` folder, run:
-```
-yarn refresh
-```
-* Start the development server
-```
-yarn develop
-```
-* Build the static website
-```
-yarn package
-```
+### Developing with your hook
+Running `yarn watch` in the root of this project will kick off a watch command in both the `example` and hook workspaces. This means any time you make a change to the hook, it will build, and subsequently, your example page will refresh with that new hook build.
 
 ### Publishing
+* Navigate to your hook directory (default is use-custom-hook)
+```
+cd [hook directory]
+```
 * Log in to npm
 ```
 npm login
@@ -64,3 +58,6 @@ npm login
 ```
 npm publish
 ```
+
+### Depliying your example
+Running `yarn build` in the root directory will create a new static build of the example website available in the `example/out` folder. This is standard HTML that can be uploaded to any static hosting software.

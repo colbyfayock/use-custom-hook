@@ -9,7 +9,6 @@
     "build:example": "yarn workspace example package",
     "build:hook": "yarn workspace use-custom-hook build",
     "bump": "yarn workspace use-custom-hook bump",
-    "release": "cd use-custom-hook && npm publish",
     "watch": "concurrently -n Hook,Example \"yarn watch:hook\" \"yarn watch:example\"",
     "watch:example": "yarn workspace example develop",
     "watch:hook": "yarn workspace use-custom-hook watch"
