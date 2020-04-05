@@ -14,9 +14,10 @@
   ],
   "main": "index.js",
   "scripts": {
-    "prepublishOnly": "yarn build",
     "build": "babel src --out-dir .",
-    "bump": "npm version"
+    "bump": "npm version",
+    "example": "cd example && yarn package",
+    "prepublishOnly": "yarn build"
   },
   "license": "MIT",
   "devDependencies": {
