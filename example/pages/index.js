@@ -1,11 +1,11 @@
-import { useCustomHook } from 'use-custom-hook';
+import { useCustomHook } from '../../use-custom-hook';
 
 import { toCamel } from '../lib/util';
 
-import config from '../../package.json';
+import hookConfig from '../../use-custom-hook/package.json';
 
 export default function Index() {
-  const { name, description, repository = {}, author = {} } = config;
+  const { name, description, repository = {}, author = {} } = hookConfig;
 
   const { name: authorName, url: authorUrl } = author;
 
