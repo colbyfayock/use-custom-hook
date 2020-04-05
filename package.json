@@ -16,7 +16,7 @@
   "scripts": {
     "build": "babel src --out-dir .",
     "bump": "npm version",
-    "example": "cd example && yarn package",
+    "example": "cd example && yarn install && yarn package",
     "prepublishOnly": "yarn build"
   },
   "license": "MIT",
