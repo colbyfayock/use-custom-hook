@@ -5,7 +5,14 @@ import { toCamel } from '../lib/util';
 import config from '../../package.json';
 
 export default function Index() {
-  const { name, description } = config;
+  const { name, description, repository = {}, author = {} } = config;
+
+  const { name: authorName, url: authorUrl } = author;
+
+  const { url: repositoryUrl } = repository;
+  const repositoryExists = typeof repositoryUrl === 'string';
+
+  const repositoryUrlDisplay = repositoryExists && repositoryUrl.split('://')[1];
 
   const hookSettings = {
     message: 'Hello, custom hook!'
@@ -67,22 +74,26 @@ export default function Index() {
 
         <p>{ description }</p>
 
-        <p>
-          <a href="https://github.com/colbyfayock/use-custom-hook">
-            github.com/colbyfayock/use-custom-hook
-          </a>
-        </p>
+        { repositoryExists && (
+          <p>
+            <a href={repositoryUrl}>
+              { repositoryUrlDisplay }
+            </a>
+          </p>
+        )}
 
         <h2>How to use</h2>
 
         <p>
-          Find instructions for how to get started <a href="https://github.com/colbyfayock/use-custom-hook">on the repo</a>.
+          Add your instructions here!
         </p>
 
         <h2>Examples</h2>
 
-        <h3>Input / Output</h3>
-        <p>{ message }</p>
+        <h3>Set and grab message</h3>
+        <p>
+          <strong>Input:</strong>
+        </p>
         <pre>
           <code>
 {`const hookSettings = {
@@ -92,15 +103,19 @@ export default function Index() {
 const { message } = useCustomHook(hookSettings);`}
           </code>
         </pre>
-
+        <p>
+          <strong>Output:</strong>
+        </p>
+        <p>
+          { message }
+        </p>
       </section>
 
       <footer>
         <p>
-          Made by <a href="https://twitter.com/colbyfayock">Colby Fayock</a>
+          Made by <a href={authorUrl}>{ authorName }</a>
         </p>
       </footer>
-
     </main>
   );
 

@@ -2,13 +2,17 @@
   "name": "use-custom-hook",
   "version": "1.0.0",
   "description": "A starter for creating a new React hook",
-  "author": "Colby Fayock <hello@colbyfayock.com>",
+  "author": {
+    "name": "Colby Fayock",
+    "email": "hello@colbyfayock.com",
+    "url": "https://twitter.com/colbyfayock"
+  },
   "keywords": [
     "react",
     "hooks",
     "react-hooks"
   ],
-  "main": "dist/use-custom-hook.js",
+  "main": "index.js",
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "babel src --out-dir .",

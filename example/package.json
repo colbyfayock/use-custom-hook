@@ -9,6 +9,7 @@
     "develop": "yarn dev",
     "export": "next export",
     "package": "yarn build && yarn export",
+    "refresh": "yarn install --force",
     "start": "next start"
   },
   "keywords": [],

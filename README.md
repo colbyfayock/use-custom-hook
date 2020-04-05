@@ -37,6 +37,24 @@ See [Adding an existing project to GitHub using the command line](https://help.g
 * Update the How to Use section in `example/pages/index.js` with documentation on how to use your hook
 * Update the name and description in `example/pages/index.js` to your new hook's name and description
 
+### Testing your hook
+* Build the hook locally. From the root of the project, run:
+```
+yarn build
+```
+* Refresh the dependency in the example. In the `example` folder, run:
+```
+yarn refresh
+```
+* Start the development server
+```
+yarn develop
+```
+* Build the static website
+```
+yarn package
+```
+
 ### Publishing
 * Log in to npm
 ```
