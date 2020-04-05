@@ -4,7 +4,7 @@ A starter template for creating a new React Hook.
 
 ## 🚀 Getting Started
 
-## tl;dr
+### tl;dr
 * Clone with new git history
 * Update the name, author, and examples
 * Publish
