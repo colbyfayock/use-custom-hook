@@ -48,6 +48,7 @@ const DEFAULT_NAME_CAMEL = 'useCustomHook';
 
   const filesWithSnake = [
     './package.json',
+    'example/pages/index.js',
     `./${DEFAULT_NAME_SNAKE}/package.json`
   ]
 
@@ -58,6 +59,9 @@ const DEFAULT_NAME_CAMEL = 'useCustomHook';
   await Promise.all(snakePromises);
 
   const filesWithCamel = [
+    'example/pages/index.js',
+    `./${DEFAULT_NAME_SNAKE}/src/index.js`,
+    `./${DEFAULT_NAME_SNAKE}/src/${DEFAULT_NAME_CAMEL}.js`
   ];
 
   const camelPromises = filesWithCamel.map(filePath => {
@@ -68,8 +72,12 @@ const DEFAULT_NAME_CAMEL = 'useCustomHook';
 
   const filesToMove = [
     {
-      originalLocation: DEFAULT_NAME_SNAKE,
-      newLocation: nameSnakeCase
+      originalLocation: `./${DEFAULT_NAME_SNAKE}/src/${DEFAULT_NAME_CAMEL}.js`,
+      newLocation: `./${DEFAULT_NAME_SNAKE}/src/${nameCamelCase}.js`
+    },
+    {
+      originalLocation: `./${DEFAULT_NAME_SNAKE}`,
+      newLocation: `./${nameSnakeCase}`
     }
   ];
 
