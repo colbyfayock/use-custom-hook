@@ -12,7 +12,7 @@
     "watch": "concurrently -n Hook,Example \"yarn watch:hook\" \"yarn watch:example\"",
     "watch:example": "yarn workspace example develop",
     "watch:hook": "yarn workspace use-custom-hook watch",
-    "setup": "node ./scripts/setup.js"
+    "setup": "node ./scripts/setup.js && rm -rf ./scripts"
   },
   "devDependencies": {
     "child_process": "^1.0.2",

@@ -7,6 +7,35 @@ const { exec } = require('child_process');
 const DEFAULT_NAME_SNAKE = 'use-custom-hook';
 const DEFAULT_NAME_CAMEL = 'useCustomHook';
 
+const filesWithSnake = [
+  './package.json',
+  'example/pages/index.js',
+  `./${DEFAULT_NAME_SNAKE}/package.json`
+];
+
+const filesWithCamel = [
+  'example/pages/index.js',
+  `./${DEFAULT_NAME_SNAKE}/src/index.js`,
+  `./${DEFAULT_NAME_SNAKE}/src/${DEFAULT_NAME_CAMEL}.js`
+];
+
+const filesToMove = [
+  {
+    originalLocation: `./${DEFAULT_NAME_SNAKE}/src/${DEFAULT_NAME_CAMEL}.js`,
+    newLocation: `./${DEFAULT_NAME_SNAKE}/src/{nameCamelCase}.js`
+  },
+  {
+    originalLocation: `./${DEFAULT_NAME_SNAKE}`,
+    newLocation: `./{nameSnakeCase}`
+  }
+];
+
+const packagesToCleanup = [
+  'child_process',
+  'fs',
+  'prompt'
+]
+
 (async () => {
   prompt.start();
 
@@ -36,21 +65,27 @@ const DEFAULT_NAME_CAMEL = 'useCustomHook';
     }
   ]);
 
+  /**
+   * replaceSnakeString
+   */
+
+  const snakeRegex = new RegExp(DEFAULT_NAME_SNAKE, 'g');
+
   function replaceSnakeString(original) {
-    const regex = new RegExp(DEFAULT_NAME_SNAKE, 'g');
-    return original.replace(regex, nameSnakeCase);
+    return original.replace(snakeRegex, nameSnakeCase);
   }
+
+  /**
+   * replaceCamelString
+   */
+
+  const camelRegex = new RegExp(DEFAULT_NAME_CAMEL, 'g');
 
   function replaceCamelString(original) {
-    const regex = new RegExp(DEFAULT_NAME_CAMEL, 'g');
-    return original.replace(regex, nameCamelCase);
+    return original.replace(camelRegex, nameCamelCase);
   }
 
-  const filesWithSnake = [
-    './package.json',
-    'example/pages/index.js',
-    `./${DEFAULT_NAME_SNAKE}/package.json`
-  ]
+  console.log(`Updating instances of ${DEFAULT_NAME_SNAKE} with ${nameSnakeCase}...`);
 
   const snakePromises = filesWithSnake.map(filePath => {
     return promiseToModifyFile(filePath, replaceSnakeString)
@@ -58,11 +93,7 @@ const DEFAULT_NAME_CAMEL = 'useCustomHook';
 
   await Promise.all(snakePromises);
 
-  const filesWithCamel = [
-    'example/pages/index.js',
-    `./${DEFAULT_NAME_SNAKE}/src/index.js`,
-    `./${DEFAULT_NAME_SNAKE}/src/${DEFAULT_NAME_CAMEL}.js`
-  ];
+  console.log(`Updating instances of ${DEFAULT_NAME_CAMEL} with ${nameCamelCase}...`);
 
   const camelPromises = filesWithCamel.map(filePath => {
     return promiseToModifyFile(filePath, replaceCamelString)
@@ -70,22 +101,28 @@ const DEFAULT_NAME_CAMEL = 'useCustomHook';
 
   await Promise.all(camelPromises);
 
-  const filesToMove = [
-    {
-      originalLocation: `./${DEFAULT_NAME_SNAKE}/src/${DEFAULT_NAME_CAMEL}.js`,
-      newLocation: `./${DEFAULT_NAME_SNAKE}/src/${nameCamelCase}.js`
-    },
-    {
-      originalLocation: `./${DEFAULT_NAME_SNAKE}`,
-      newLocation: `./${nameSnakeCase}`
-    }
-  ];
+  console.log(`Moving files with default name with configured name...`);
 
   const movePromises = filesToMove.map(({originalLocation, newLocation} = {}) => {
-    return promiseToExec(`mv ${originalLocation} ${newLocation}`)
+    let replaced;
+    replaced = newLocation.replace('{nameCamelCase}', nameCamelCase);
+    replaced = newLocation.replace('{nameSnakeCase}', nameSnakeCase);
+    return promiseToExec(`mv ${originalLocation} ${replaced}`)
   });
 
   await Promise.all(movePromises);
+
+  console.log('Cleaning up setup scripts...');
+
+  const packagesString = packagesToCleanup.join(' ');
+
+  await promiseToExec(`yarn remove ${packagesString} -W`);
+
+  console.log('Resetting git...')
+
+  await promiseToExec('rm -rf .git');
+
+  await promiseToExec('git init');
 
   console.log('Done.');
 })();
@@ -130,6 +167,11 @@ async function promiseToExec(command) {
   })
 }
 
+/**
+ * promiseToModifyFile
+ * @description Promise to modify a file
+ */
+
 async function promiseToModifyFile(file, change) {
   const errorBase = 'Failed to modify file';
   let contents;
@@ -159,6 +201,11 @@ async function promiseToModifyFile(file, change) {
   return contents;
 }
 
+/**
+ * promiseToReadFile
+ * @description Promise to read a file
+ */
+
 async function promiseToReadFile(file, options = 'utf8') {
   return new Promise((resolve, reject) => {
     fs.readFile(file, options, (error, data) => {
@@ -170,6 +217,11 @@ async function promiseToReadFile(file, options = 'utf8') {
     });
   })
 }
+
+/**
+ * writeFile
+ * @description Promise to write a file
+ */
 
 async function writeFile(file, contents, options = 'utf8') {
   return new Promise((resolve, reject) => {
