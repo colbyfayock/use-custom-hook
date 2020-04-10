@@ -11,7 +11,8 @@
     "bump": "yarn workspace use-custom-hook bump",
     "watch": "concurrently -n Hook,Example \"yarn watch:hook\" \"yarn watch:example\"",
     "watch:example": "yarn workspace example develop",
-    "watch:hook": "yarn workspace use-custom-hook watch"
+    "watch:hook": "yarn workspace use-custom-hook watch",
+    "setup": "node ./scripts/setup.js"
   },
   "devDependencies": {
     "child_process": "^1.0.2",

@@ -28,15 +28,14 @@ See [Adding an existing project to GitHub using the command line](https://help.g
 * Update the `package.json` file to include your hook's name, description, and your author information
 
 ### Setting up your new hook
-* Move / rename files and folders:
-  * Rename `use-custom-hook/src/useCustomHook.js` to your new hook's name
-  * Update the location in `use-custom-hook/src/index.js` with the new file name
-  * Update the `use-custom-hook/package.json` name entry to your hook's new name in snake-case format
-  * Update the `use-custom-hook` folder to the same name as your as the name entry in `use-custom-hook/package.json`
-  * Update the `use-custom-hook` workspace entry in the root `paackage.json` to the name of your folder
-* Update hook name instances in files:
-  * Change any instances of `useCustomHook` to your new hook name in camelCase format
-  * Change any instances of `use-custom-hook` to your new hook name in snake-case format
+To get started, run the following command:
+```
+yarn setup
+```
+
+This will prompt you for custom name configurations in both a camelCase and snake-case format.
+
+This can only be ran once, as it will clean up the script files immediately after running.
 
 ### Updating the example
 * Update all examples in `example/pages/index.js` to use your new hook instead of `useCustomHook`

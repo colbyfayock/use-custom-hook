@@ -58,7 +58,6 @@ const DEFAULT_NAME_CAMEL = 'useCustomHook';
   await Promise.all(snakePromises);
 
   const filesWithCamel = [
-    `./README.md`
   ];
 
   const camelPromises = filesWithCamel.map(filePath => {
