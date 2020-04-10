@@ -124,6 +124,10 @@ const packagesToCleanup = [
 
   await promiseToExec('git init');
 
+  await promiseToExec(`git add ./example ./${nameSnakeCase} package.json`);
+
+  await promiseToExec('git commit -m "[use-custom-hook] Initailized Project"');
+
   console.log('Done.');
 })();
 
