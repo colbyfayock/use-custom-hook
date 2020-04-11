@@ -215,7 +215,7 @@ const pathsToCommit = [
 
   console.log('> Committing');
 
-  await promiseToExec('git commit -m "[use-custom-hook] Initailized Project"');
+  await promiseToExec('git commit -m "[use-custom-hook] Initialized Project"');
 
   console.log('Done.');
 })();
