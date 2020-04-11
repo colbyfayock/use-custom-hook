@@ -93,25 +93,9 @@ const pathsToCommit = [
     }
   ]);
 
-  /**
-   * replaceSnakeString
-   */
-
-  const snakeRegex = new RegExp(DEFAULT_NAME_SNAKE, 'g');
-
-  function replaceSnakeString(original) {
-    return original.replace(snakeRegex, nameSnakeCase);
-  }
-
-  /**
-   * replaceCamelString
-   */
-
-  const camelRegex = new RegExp(DEFAULT_NAME_CAMEL, 'g');
-
-  function replaceCamelString(original) {
-    return original.replace(camelRegex, nameCamelCase);
-  }
+  /******************
+   * AUTHOR UPDATES *
+   ******************/
 
   /**
    * replaceAuthorString
@@ -123,9 +107,27 @@ const pathsToCommit = [
     return original.replace(authorRegex, authorName);
   }
 
+  console.log(`Updating instances of ${DEFAULT_NAME_CAMEL} with ${nameCamelCase}...`);
+
+  const authorPromises = filesWithAuthorName.map(filePath => {
+    return promiseToModifyFile(filePath, replaceAuthorString)
+  });
+
+  await Promise.all(authorPromises);
+
   /******************
    * UPDATING FILES *
    ******************/
+
+  /**
+   * replaceSnakeString
+   */
+
+  const snakeRegex = new RegExp(DEFAULT_NAME_SNAKE, 'g');
+
+  function replaceSnakeString(original) {
+    return original.replace(snakeRegex, nameSnakeCase);
+  }
 
   console.log(`Updating instances of ${DEFAULT_NAME_SNAKE} with ${nameSnakeCase}...`);
 
@@ -134,6 +136,16 @@ const pathsToCommit = [
   });
 
   await Promise.all(snakePromises);
+
+  /**
+   * replaceCamelString
+   */
+
+  const camelRegex = new RegExp(DEFAULT_NAME_CAMEL, 'g');
+
+  function replaceCamelString(original) {
+    return original.replace(camelRegex, nameCamelCase);
+  }
 
   console.log(`Updating instances of ${DEFAULT_NAME_CAMEL} with ${nameCamelCase}...`);
 
@@ -164,18 +176,6 @@ const pathsToCommit = [
   });
 
   await Promise.all(movePromises);
-
-  /******************
-   * AUTHOR UPDATES *
-   ******************/
-
-  console.log(`Updating instances of ${DEFAULT_NAME_CAMEL} with ${nameCamelCase}...`);
-
-  const authorPromises = filesWithAuthorName.map(filePath => {
-    return promiseToModifyFile(filePath, replaceAuthorString)
-  });
-
-  await Promise.all(authorPromises);
 
   /***********
    * CLEANUP *
