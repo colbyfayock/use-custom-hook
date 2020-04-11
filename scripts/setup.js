@@ -116,6 +116,7 @@ const pathsToCommit = [
     let replaced;
     replaced = newLocation.replace('{nameCamelCase}', nameCamelCase);
     replaced = newLocation.replace('{nameSnakeCase}', nameSnakeCase);
+    console.log(`> ${originalLocation} to ${replaced}`);
     return promiseToExec(`mv ${originalLocation} ${replaced}`)
   });
 
@@ -125,23 +126,31 @@ const pathsToCommit = [
 
   const packagesString = packagesToCleanup.join(' ');
 
+  packagesToCleanup.forEach(package => console.log(`> Package: ${package}`))
+
   await promiseToExec(`yarn remove ${packagesString} -W`);
+
+  console.log('> Removing ./scripts');
+
+  await promiseToExec('rm -rf scripts');
 
   console.log('Resetting git...');
 
+  console.log('> Removing .git');
+
   await promiseToExec('rm -rf .git');
 
-  console.log('Initializing git...');
+  console.log('> Initializing');
 
   await promiseToExec('git init');
 
-  console.log('Adding files to git...');
+  console.log('> Adding');
 
   const pathsString = pathsToCommit.join(' ');
 
   await promiseToExec(`git add ${pathsString} ./${nameSnakeCase}`);
 
-  console.log('Committing files to git...');
+  console.log('> Committing');
 
   await promiseToExec('git commit -m "[use-custom-hook] Initailized Project"');
 
