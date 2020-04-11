@@ -34,7 +34,16 @@ const packagesToCleanup = [
   'child_process',
   'fs',
   'prompt'
-]
+];
+
+const pathsToCommit = [
+  './example',
+  '.gitignore',
+  'LICENSE',
+  'package.json',
+  'README.md',
+  'yarn.lock'
+];
 
 (async () => {
   prompt.start();
@@ -118,13 +127,21 @@ const packagesToCleanup = [
 
   await promiseToExec(`yarn remove ${packagesString} -W`);
 
-  console.log('Resetting git...')
+  console.log('Resetting git...');
 
   await promiseToExec('rm -rf .git');
 
+  console.log('Initializing git...');
+
   await promiseToExec('git init');
 
-  await promiseToExec(`git add ./example ./${nameSnakeCase} package.json`);
+  console.log('Adding files to git...');
+
+  const pathsString = pathsToCommit.join(' ');
+
+  await promiseToExec(`git add ${pathsString} ./${nameSnakeCase}`);
+
+  console.log('Committing files to git...');
 
   await promiseToExec('git commit -m "[use-custom-hook] Initailized Project"');
 
