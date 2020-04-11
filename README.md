@@ -37,6 +37,8 @@ This will prompt you for custom name configurations in both a camelCase and snak
 
 This can only be ran once, as it will clean up the script files immediately after running.
 
+Make sure you remember to update your email address, author URL, git addresses, and anything else within the [hook-name]/package.json file.
+
 ### Updating the example
 * Update all examples in `example/pages/index.js` to use your new hook instead of `useCustomHook`
 * Update the How to Use section in `example/pages/index.js` with documentation on how to use your hook

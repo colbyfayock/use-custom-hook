@@ -9,7 +9,8 @@ const DEFAULT_NAME_SNAKE = 'use-custom-hook';
 const DEFAULT_NAME_CAMEL = 'useCustomHook';
 
 const filesWithAuthorName = [
-  'LICENSE'
+  './LICENSE',
+  `./${DEFAULT_NAME_SNAKE}/package.json`
 ];
 
 const filesWithSnake = [
