@@ -4,8 +4,13 @@ const fs = require('fs');
 const prompt = require('prompt');
 const { exec } = require('child_process');
 
+const DEFAULT_AUTHOR_NAME = 'Colby Fayock';
 const DEFAULT_NAME_SNAKE = 'use-custom-hook';
 const DEFAULT_NAME_CAMEL = 'useCustomHook';
+
+const filesWithAuthorName = [
+  'LICENSE'
+];
 
 const filesWithSnake = [
   './package.json',
@@ -47,6 +52,19 @@ const pathsToCommit = [
 
 (async () => {
   prompt.start();
+
+  console.log('What is the name of the package author? (ex: Colby Fayock)');
+
+  const { authorName } = await getPrompt([
+    {
+      properties: {
+        nameCamelCase: {
+          description: 'Author name',
+          required: true
+        }
+      }
+    }
+  ]);
 
   console.log('What is the hook name in camelCase (ex: useCustomHook)?');
 
@@ -94,6 +112,20 @@ const pathsToCommit = [
     return original.replace(camelRegex, nameCamelCase);
   }
 
+  /**
+   * replaceAuthorString
+   */
+
+  const authorRegex = new RegExp(DEFAULT_AUTHOR_NAME, 'g');
+
+  function replaceAuthorString(original) {
+    return original.replace(authorRegex, authorName);
+  }
+
+  /******************
+   * UPDATING FILES *
+   ******************/
+
   console.log(`Updating instances of ${DEFAULT_NAME_SNAKE} with ${nameSnakeCase}...`);
 
   const snakePromises = filesWithSnake.map(filePath => {
@@ -110,17 +142,43 @@ const pathsToCommit = [
 
   await Promise.all(camelPromises);
 
+  /****************
+   * MOVING FILES *
+   ****************/
+
   console.log(`Moving files with default name with configured name...`);
 
   const movePromises = filesToMove.map(({originalLocation, newLocation} = {}) => {
-    let replaced;
-    replaced = newLocation.replace('{nameCamelCase}', nameCamelCase);
-    replaced = newLocation.replace('{nameSnakeCase}', nameSnakeCase);
+    const camelLocationRegex = new RegExp('{nameCamelCase}', 'g');
+    const snakeLocationRegex = new RegExp('{nameSnakeCase}', 'g');
+
+    let replaced = newLocation;
+
+    replaced = replaced.replace(camelLocationRegex, nameCamelCase);
+    replaced = replaced.replace(snakeLocationRegex, nameSnakeCase);
+
     console.log(`> ${originalLocation} to ${replaced}`);
-    return promiseToExec(`mv ${originalLocation} ${replaced}`)
+
+    return promiseToExec(`mv ${originalLocation} ${replaced}`);
   });
 
   await Promise.all(movePromises);
+
+  /******************
+   * AUTHOR UPDATES *
+   ******************/
+
+  console.log(`Updating instances of ${DEFAULT_NAME_CAMEL} with ${nameCamelCase}...`);
+
+  const authorPromises = filesWithAuthorName.map(filePath => {
+    return promiseToModifyFile(filePath, replaceAuthorString)
+  });
+
+  await Promise.all(authorPromises);
+
+  /***********
+   * CLEANUP *
+   ***********/
 
   console.log('Cleaning up setup scripts...');
 
@@ -133,6 +191,10 @@ const pathsToCommit = [
   console.log('> Removing ./scripts');
 
   await promiseToExec('rm -rf scripts');
+
+  /*****************
+   * RESETTING GIT *
+   *****************/
 
   console.log('Resetting git...');
 
