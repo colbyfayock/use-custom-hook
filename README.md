@@ -1,4 +1,4 @@
-# 🧰 useCustomHook
+# 🧰 useCustomHook: React Hook Starter
 
 A starter template for creating a new React Hook.
 
