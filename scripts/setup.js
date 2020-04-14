@@ -59,7 +59,7 @@ const pathsToCommit = [
   const { authorName } = await getPrompt([
     {
       properties: {
-        nameCamelCase: {
+        authorName: {
           description: 'Author name',
           required: true
         }
@@ -92,6 +92,8 @@ const pathsToCommit = [
       }
     }
   ]);
+
+  console.log('Updating all the things...');
 
   /******************
    * AUTHOR UPDATES *
