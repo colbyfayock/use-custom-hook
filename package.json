@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "child_process": "^1.0.2",
-    "concurrently": "^5.1.0",
+    "concurrently": "^5.3.0",
     "fs": "^0.0.1-security",
     "prompt": "^1.0.0"
   },
