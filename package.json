@@ -20,5 +20,6 @@
     "concurrently": "^5.1.0",
     "fs": "^0.0.1-security",
     "prompt": "^1.0.0"
-  }
+  },
+  "license": "MIT"
 }
