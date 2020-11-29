@@ -68,7 +68,7 @@ npm login
 npm publish
 ```
 
-### Depliying your example
+### Deploying your example
 Running `yarn build` in the root directory will create a new static build of the example website available in the `example/out` folder. This is standard HTML that can be uploaded to any static hosting software.
 
 ## Contributors ✨
@@ -81,6 +81,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://colbyfayock.com/newsletter"><img src="https://avatars2.githubusercontent.com/u/1045274?v=4" width="100px;" alt=""/><br /><sub><b>Colby Fayock</b></sub></a><br /><a href="https://github.com/colbyfayock/use-custom-hook/commits?author=colbyfayock" title="Code">💻</a> <a href="https://github.com/colbyfayock/use-custom-hook/commits?author=colbyfayock" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/chankruze"><img src="https://avatars2.githubusercontent.com/u/29806845?v=4" width="100px;" alt=""/><br /><sub><b>Chandan Kumar Mandal</b></sub></a><br /><a href="https://github.com/colbyfayock/use-custom-hook/commits?author=chankruze" title="Code">💻</a> <a href="https://github.com/colbyfayock/use-custom-hook/commits?author=chankruze" title="Documentation">📖</a></td>
   </tr>
 </table>
 
