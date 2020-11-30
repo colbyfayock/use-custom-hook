@@ -23,7 +23,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "nodemon": "^2.0.6"
