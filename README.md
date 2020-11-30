@@ -68,7 +68,7 @@ npm login
 npm publish
 ```
 
-### Depliying your example
+### Deploying your example
 Running `yarn build` in the root directory will create a new static build of the example website available in the `example/out` folder. This is standard HTML that can be uploaded to any static hosting software.
 
 ## Contributors ✨
