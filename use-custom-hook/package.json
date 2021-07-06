@@ -26,7 +26,7 @@
     "@babel/core": "^7.13.16",
     "@babel/preset-env": "^7.13.8",
     "@babel/preset-react": "^7.12.13",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.9"
   },
   "repository": {
     "type": "git",
