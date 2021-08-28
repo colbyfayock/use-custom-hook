@@ -15,11 +15,12 @@
     "watch:hook": "yarn workspace use-custom-hook watch",
     "setup": "node ./scripts/setup.js"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "license": "MIT",
+  "dependencies": {
     "child_process": "^1.0.2",
-    "concurrently": "^5.3.0",
+    "concurrently": "^6.2.1",
     "fs": "^0.0.1-security",
-    "prompt": "^1.1.0"
-  },
-  "license": "MIT"
+    "prompt": "^1.2.0"
+  }
 }

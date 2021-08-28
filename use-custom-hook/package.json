@@ -21,18 +21,19 @@
     "watch": "nodemon --watch src --exec \"yarn build\""
   },
   "license": "MIT",
-  "devDependencies": {
-    "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.13.16",
-    "@babel/preset-env": "^7.13.8",
-    "@babel/preset-react": "^7.12.13",
-    "nodemon": "^2.0.7"
-  },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/colbyfayock/use-custom-hook"
   },
   "bugs": {
     "url": "https://github.com/colbyfayock/use-custom-hook/issues"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "nodemon": "^2.0.12"
   }
 }
