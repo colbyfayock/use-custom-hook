@@ -1655,7 +1655,7 @@ colors@1.0.x:
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.0.3.tgz#0433f44d809680fdeb60ed260f1b0c262e82a40b"
   integrity sha1-BDP0TYCWgP3rYO0mDxsMJi6CpAs=
 
-colors@^1.1.2:
+colors@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
   integrity sha512-a+UqTh4kgZg/SlGvfbzDHpgRu7AAQOmmqRHJnxhRZICKFUT91brVhNNt58CMWU9PsBbv3PDCZUHbVxuDiH2mtA==
@@ -3491,13 +3491,13 @@ process@0.11.10, process@^0.11.10:
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
-prompt@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/prompt/-/prompt-1.2.0.tgz#5d8f1d9011766bac07abde510dbf4338d87b4f02"
-  integrity sha512-iGerYRpRUg5ZyC+FJ/25G5PUKuWAGRjW1uOlhX7Pi3O5YygdK6R+KEaBjRbHSkU5vfS5PZCltSPZdDtUYwRCZA==
+prompt@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/prompt/-/prompt-1.2.1.tgz#49f46f17aacbbf501786fc6f3a30d99075c846c9"
+  integrity sha512-B4+2QeNDn5Cdp4kK2iOwV8qvrWpiPKlZKI9ZKkPl0C9KgeMW6DyWWqhqHiFq9vZf6zTniv+rYalK0ZlgktSwiw==
   dependencies:
     async "~0.9.0"
-    colors "^1.1.2"
+    colors "1.4.0"
     read "1.0.x"
     revalidator "0.1.x"
     winston "2.x"

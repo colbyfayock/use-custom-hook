@@ -21,6 +21,6 @@
     "child_process": "^1.0.2",
     "concurrently": "^6.2.1",
     "fs": "^0.0.1-security",
-    "prompt": "^1.2.0"
+    "prompt": "^1.2.1"
   }
 }
