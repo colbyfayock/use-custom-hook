@@ -34,6 +34,6 @@
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.18"
   }
 }
